@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #append{
+            width: 90%;
+            height: 80px;
+            margin: auto;
+            background-color: rgb(117, 111, 111);
+            margin-bottom: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            /* gap:80px; */
+            justify-content: space-evenly;
+        }
+        form{
+            display: grid;
+            grid-template-columns: repeat(1,1fr);
+            gap:21px;
+            width: 35%;
+            margin: auto;
+            
+        }
+        #submit{
+           width: 17%;
+           padding: 8px 10px 8px 10px;
+           margin: auto;
+           border-radius: 5px;
+           border: 0px;
+           background-color: blue;
+           color: white;
+        }
+       input{
+        padding: 5px 8px 5px 8px;
+       }
+       select{
+        padding: 5px 8px 5px 8px;
+       }
+
+
+
+    </style>
+</head>
+<body>
+    
+    <div id="append">
+
+        <div >
+            <p id="a">Web-16</p>
+        </div>
+    
+        <div >
+            <p id="b">Web-17</p>
+        </div>
+        <div >
+            <p id="c">Web-18</p>
+        </div>
+        <div >
+            <p id="d">Web-19</p>
+    
+        </div>
+    </div>
+    <a href="dashboard.html">Dashboard</a>
+    <form id="form">
+        <input id="name" type="text" placeholder="Student Name">
+        <select  id="course">
+            <option value="Course">Course</option>
+            <option value="FSWD">FSWD</option>
+            <option value="FSAD">FSAD</option>
+            <option value="DA">DA</option>
+        </select>
+        <select id="unit">
+            <option value="Unit">Unit</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <input id="image" type="url" placeholder="Image_url">
+        <select id="batch">
+            <option value="">Batch</option>
+            <option value="Web-16">Web-16</option>
+            <option value="Web-17">Web-17</option>
+            <option value="Web-18">Web-18</option>
+            <option value="Web-19">Web-19</option>
+        </select>
+        <input id="submit" type="submit">
+        
+    </form>
+</body>
+</html>
+
+<script>
+     
+    document.querySelector("#form").addEventListener("submit",mysub)
+    var arr=JSON.parse(localStorage.getItem("details"))|| []
+
+     function mysub(){
+        event.preventDefault()
+        var obj={
+        Name:form.name.value,
+        Course:form.course.value,
+        Unit:form.unit.value,
+        Image_url:form.image.value,
+        Batch:form.batch.value,
+        }
+        arr.push(obj)
+        localStorage.setItem("details",JSON.stringify(arr))
+        console.log(arr)
+        window.location.reload()
+    }
+
+     var count=0
+     var count1=0
+     var count2=0
+     var count3=0
+     arr.forEach(function mysum(el){
+         if(el.Batch=="Web-16"){
+             count++
+           
+         }
+        else if(el.Batch=="Web-17"){
+             count1++
+           
+         }
+        else if(el.Batch=="Web-18"){
+             count2++
+          
+         }
+         else if(el.Batch=="Web-19"){
+             count3++
+
+         }
+            document.querySelector("#a").innerText="Web-16 -"+count
+            document.querySelector("#b").innerText="Web-17 -"+count1
+            document.querySelector("#c").innerText="Web-18 -"+count2
+            document.querySelector("#d").innerText="Web-19 -"+count3
+            
+     })
+     
+
+</script>
+
+
+
+
+
+
+
+
+

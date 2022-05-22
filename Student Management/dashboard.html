@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          #append{
+            width: 90%;
+            height: 80px;
+            margin: auto;
+            background-color: rgb(117, 111, 111);
+            margin-bottom: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            /* gap:80px; */
+            justify-content: space-evenly;
+        }
+      
+        #img{
+            width: 100%;         
+        }
+        table,
+        td,
+        th {
+        border: 1px solid #ddd;
+        text-align: left;
+        }
+
+        table {
+        border-collapse: collapse;
+        width: 70%;
+        margin: auto;
+        margin-top: 50px;
+        }
+
+        th,
+        td {
+        padding: 15px;
+        }
+
+        tr > th {
+        background-color: teal;
+        color: white;
+        }
+        #hello{
+            width:100px;
+            height: 100px;
+        }
+
+    </style>
+
+</head>
+<body>
+ 
+   <div id="append" >
+       <div>
+            <p id="a">Web-16</p>
+        </div>
+    
+        <div >
+            <p id="b">Web-17</p>
+        </div>
+        <div >
+            <p id="c">Web-18</p>
+        </div>
+        <div >
+            <p id="d">Web-19</p>
+    
+        </div>
+    </div>
+    <a href="index.html">Form</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Course</th>
+                <th>Unit</th>
+                <th>Image_url</th>
+                <th>Batch</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody id="app">
+           <!-- Append data here -->
+        </tbody>
+    </table>
+</body>
+</html>
+
+<script>
+        var arr=JSON.parse(localStorage.getItem("details"))
+        var count=0
+        var count1=0
+        var count2=0
+        var count3=0
+     arr.forEach(function mysum(el){
+         if(el.Batch=="Web-16"){
+             count++
+           
+         }
+        else if(el.Batch=="Web-17"){
+             count1++
+           
+         }
+        else if(el.Batch=="Web-18"){
+             count2++
+          
+         }
+         else if(el.Batch=="Web-19"){
+             count3++
+
+         }
+            document.querySelector("#a").innerText="Web-16 -"+count
+            document.querySelector("#b").innerText="Web-17 -"+count1
+            document.querySelector("#c").innerText="Web-18 -"+count2
+            document.querySelector("#d").innerText="Web-19 -"+count3
+            
+     })
+   
+     arr.forEach(function myaray(el,index){
+         var a =document.createElement("tr")
+         var b =document.createElement("td")
+         var c =document.createElement("td")
+         var d =document.createElement("td")
+         var e =document.createElement("td")
+         var f =document.createElement("td")
+         var g =document.createElement("td")
+
+         var h=document.createElement("img")
+         h.setAttribute("id","hello")
+          h.setAttribute("src",el.Image_url)
+         
+         c.innerText=el.Name
+         d.innerText=el.Course
+         e.innerText=el.Unit
+         f.innerText=el.Batch
+         g.innerText="Remove"
+         g.addEventListener("click", function(){
+            hello(el,index)
+         })
+
+         b.append(h)
+         a.append(c,d,e,b,f,g)
+         var x=document.querySelector("#app")
+         x.append(a)
+
+     })
+
+        var arrtr=JSON.parse(localStorage.getItem("trash"))||[]
+        if(arrtr==[]){
+            window.location.reload()
+        }
+
+        function hello(el,index){
+         arr.splice(index,1)
+         arrtr.push(el)
+         localStorage.setItem("details",JSON.stringify(arr))
+         localStorage.setItem("trash",JSON.stringify(arrtr))
+         window.location.reload()
+     }
+</script>
